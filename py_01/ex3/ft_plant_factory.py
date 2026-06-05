@@ -1,14 +1,13 @@
 class Plant:
 
-    def __init__(self, name: str, height: float, days: int, growth_rate: float):
+    def __init__(self, name: str, height: float, days: int):
         self.name = "Created: " + name.capitalize()
         self.height = height
         self.days = days
-        self.growth_rate = growth_rate
         self.show()
 
-    def grow(self) -> None:
-        self.height += round(self.growth_rate, 2)
+    def grow(self, growth_rate: float) -> None:
+        self.height += round(growth_rate, 2)
 
     def age(self) -> None:
         self.days += 1
@@ -19,12 +18,12 @@ class Plant:
 
 def ft_plant_factory() -> None:
     print("=== Plant Factory Output ==")
-    tulip = Plant("tulip", 5, 2, 1.5)
-    rose = Plant("rose", 10, 5, 0.3)
-    oak = Plant("oak", 200, 365, 1.1)
-    sunflower = Plant("sunflower", 15, 3, 2.45)
-    cactus = Plant("cactus", 15, 3, 2.45)
-    fern = Plant("fern", 15, 3, 2.45)
+    tulip = Plant("tulip", 5, 2)
+    rose = Plant("rose", 10, 5)
+    oak = Plant("oak", 200, 365)
+    sunflower = Plant("sunflower", 15, 3)
+    cactus = Plant("cactus", 15, 3)
+    fern = Plant("fern", 15, 3)
 
 
 if __name__ == "__main__":
