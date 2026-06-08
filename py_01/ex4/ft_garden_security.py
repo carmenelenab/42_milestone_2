@@ -7,7 +7,7 @@ class Plant:
         self.show()
 
     def grow(self, growth_rate: float) -> None:
-        self.height += round(growth_rate, 2)
+        self._height += round(growth_rate, 2)
 
     def age(self) -> None:
         self._age += 1
@@ -37,10 +37,10 @@ class Plant:
         print(f"{parameter.capitalize()} update rejected")
 
     def show(self) -> None:
-        print(f"{self.name}: {self._height:.1f}cm, {self._age} days old\n")
+        print(f"{self.name}: {self.get_height():.1f}cm, {self.get_age()} days old")
 
 
-def ft_garden_security() -> None:
+def main() -> None:
     print("=== Garden Security system ===")
     print("Plant created: ", end="")
     rose = Plant("rose", 10, 2)
@@ -51,7 +51,8 @@ def ft_garden_security() -> None:
     rose.set_age(-30)
     print("\nCurrent state: ", end="")
     rose.show()
+    print()
 
 
 if __name__ == "__main__":
-    ft_garden_security()
+    main()
