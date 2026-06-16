@@ -1,14 +1,15 @@
-def display(plant) -> None:
+def display(plant: "Plant") -> None:
     plant._analytics.display()
 
 
 class Plant:
     class _Analytics:
-        def __init__(self):
+        def __init__(self) -> None:
             self._age_count = 0
             self._grow_count = 0
             self._show_count = 0
             self._shade_count = 0
+            self._is_tree = False
 
         def increment_grow(self) -> None:
             self._grow_count += 1
@@ -23,10 +24,12 @@ class Plant:
             self._shade_count += 1
 
         def display(self) -> None:
-            print(f"Stats: {self._grow_count} grow, "
-                  f"{self._age_count} age, {self._show_count} show")
-            if self._shade_count >= 0 and hasattr(self, '_is_tree'):
-                print(f"{self._shade_count} shade")
+            print(
+                f"Stats: {self._grow_count} grow, "
+                f"{self._age_count} age, {self._show_count} show"
+            )
+            if self._is_tree:
+                print(f" {self._shade_count} shade")
 
     def __init__(self, name: str, height: float, age: int):
         self.name = name.capitalize()
@@ -52,10 +55,10 @@ class Plant:
 
     @staticmethod
     def age_check(age: int) -> bool:
-        return (age > 365)
+        return age > 365
 
     @classmethod
-    def anonymous(cls) -> Plant:
+    def anonymous(cls) -> "Plant":
         return cls("Unknown plant", 0.0, 0)
 
     def set_height(self, new_height: float) -> None:
@@ -99,16 +102,15 @@ class Flower(Plant):
 
 
 class Seed(Flower):
-    def __init__(self, name, height, age, color):
+    def __init__(self, name: str, height: float, age: int, color: str) -> None:
         super().__init__(name, height, age, color)
         self.seeds = 0
 
-    def bloom(self) -> int:
+    def bloom(self) -> None:
         super().bloom()
-        seeds = 42
-        return seeds
+        self.seeds = 42
 
-    def show(self):
+    def show(self) -> None:
         super().show()
         print(f" Seeds: {self.seeds}")
 
@@ -123,11 +125,10 @@ class Tree(Plant):
 
     def produce_shade(self) -> None:
         self._analytics.increment_shade()
-        print(f" Trunk diameter: {self.trunk_diameter:.1f}cm")
 
     def show(self) -> None:
         super().show()
-        self.produce_shade()
+        # self.produce_shade()
         print(
             f"Tree {self.name.capitalize()} now produces a shade of "
             f"{self._height:.1f}cm long and "
@@ -161,21 +162,19 @@ class Vegetable(Plant):
 
 
 def main() -> None:
-    print("=== Garden statistics ===")
-    print("=== Check year-old")
-    print(f"Is 30 days more than a year? -> {Plant.age_check(30)}")
-    print(f"Is 400 days more than a year? -> {Plant.age_check(400)}")
+    # print("=== Garden statistics ===")
+    # print("=== Check year-old")
+    # print(f"Is 30 days more than a year? -> {Plant.age_check(30)}")
+    # print(f"Is 400 days more than a year? -> {Plant.age_check(400)}")
 
-    print()
-    print("=== Flower")
-    rose = Flower("rose", 15, 10, "red")
-    rose.show()
-    display(rose)
-    rose.grow(0.8, 10)
-    rose.bloom()
-
-    print("[statistics for Rose]")
-    display(rose)
+    # print()
+    # print("=== Flower")
+    # rose = Flower("rose", 15, 10, "red")
+    # rose.show()
+    # display(rose)
+    # rose.grow(0.8, 10)
+    # rose.bloom()
+    # display(rose)
 
     print()
     print("=== Tree")
@@ -185,20 +184,20 @@ def main() -> None:
     oak.produce_shade()
     display(oak)
 
-    print()
-    print("=== Seed")
-    sunflower = Seed("sunflower", 80.0, 45, "yellow")
-    sunflower.show()
-    sunflower.grow(1.5, 20)
-    sunflower.age(20)
-    sunflower.bloom()
-    display(sunflower)
+    # print()
+    # print("=== Seed")
+    # sunflower = Seed("sunflower", 80.0, 45, "yellow")
+    # sunflower.show()
+    # sunflower.grow(1.5, 20)
+    # sunflower.age(20)
+    # sunflower.bloom()
+    # display(sunflower)
 
-    print()
-    print("=== Anonymous")
-    anonymous_plant = Plant.anonymous()
-    anonymous_plant.show()
-    display(anonymous_plant)
+    # print()
+    # print("=== Anonymous")
+    # anonymous_plant = Plant.anonymous()
+    # anonymous_plant.show()
+    # display(anonymous_plant)
 
 
 if __name__ == "__main__":

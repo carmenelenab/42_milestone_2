@@ -116,12 +116,10 @@ def main() -> None:
     # tulip.bloom()
     # print()
 
-
     print("=== Tree")
     oak = Tree("oak", 200, 365, 5)
     oak.show()
     print()
-
 
     print("=== Vegetable")
     tomato = Vegetable("tomato", 5, 10, "april", 0)
