@@ -8,8 +8,8 @@ class Plant:
         self.age = age
 
     def show(self) -> None:
-        print(f"{self.name.capitalize()}: {self.height}cm, \
-              {self.age} days old")
+        print(f"{self.name.capitalize()}: {self.height}cm, "
+              f"{self.age} days old")
 
 
 def ft_garden_intro() -> None:

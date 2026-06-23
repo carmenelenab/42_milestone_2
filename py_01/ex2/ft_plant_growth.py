@@ -6,7 +6,6 @@ class Plant:
         self.height = height
         self.days = days
         self.growth_rate = growth_rate
-        self.show()
 
     def grow(self) -> None:
         self.height += round(self.growth_rate, 3)
@@ -15,8 +14,8 @@ class Plant:
         self.days += 1
 
     def show(self) -> None:
-        print(f"{self.name.capitalize()}: {self.height:.2f}cm, \
-              {self.days} days old")
+        print(f"{self.name.capitalize()}: {self.height:.2f}cm, "
+              f"{self.days} days old")
 
 
 def ft_plant_growth() -> None:
@@ -28,8 +27,8 @@ def ft_plant_growth() -> None:
         print(f"=== Day {day + 1} ===")
         tulip.grow()
         tulip.age()
-        print(f"{tulip.name.capitalize()}: {tulip.height:.1f}cm, \
-              {tulip.days} days old")
+        print(f"{tulip.name.capitalize()}: {tulip.height:.1f}cm, "
+              f"{tulip.days} days old")
     print(f"Growth this week: {tulip.height - growth:.1f}cm\n")
 
 

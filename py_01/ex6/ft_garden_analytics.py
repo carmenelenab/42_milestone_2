@@ -104,13 +104,16 @@ class Flower(Plant):
 
 
 class Seed(Flower):
-    def __init__(self, name: str, height: float, age: int, color: str) -> None:
+    def __init__(
+        self, name: str, height: float, age: int, color: str
+    ) -> None:
         super().__init__(name, height, age, color)
         self.seeds = 0
 
     def bloom(self) -> None:
         super().bloom()
         self.seeds = 42
+        print(f"Seeds: {self.seeds}")
 
     def show(self) -> None:
         self._analytics.increment_show()
