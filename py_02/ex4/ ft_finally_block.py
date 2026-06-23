@@ -4,7 +4,7 @@ class GardenError(Exception):
 
 
 class PlantError(GardenError):
-    def __init__(self, message: str = " Invalid plant name to water:") -> None:
+    def __init__(self, message: str = "Invalid plant name to water:") -> None:
         super().__init__(message)
 
 
@@ -23,24 +23,28 @@ def test_watering_system() -> None:
     print("=== Garden Watering System ===\n")
     print("Testing valid plants..")
     print("Opening watering system")
-    vegetables = ["Tomato", "Lettuce", "Carrots"]
-    for veggi in vegetables:
-        try:
-            water_plant(veggi)
-        except PlantError as e:
-            print(f"Caught PlantError: {e}")
-    print("Closing watering system\n")
 
-    print("Testing invalid plants...")
-    vegetables = ["Tomato", "lettuce", "carrots"]
-    for veggi in vegetables:
-        try:
+    vegetables = ["Tomato", "Lettuce", "Carrots"]
+    try:
+        for veggi in vegetables:
             water_plant(veggi)
-        except PlantError as e:
-            print(f"Caught PlantError: {e} '{veggi}'"
-                  ".. ending tests and returning to main")
-            break
-    print("Closing watering system")
+    except PlantError as e:
+        print(f"Caught PlantError: {e} '{veggi}'\n"
+              ".. ending tests and returning to main")
+    finally:
+        print("Closing watering system")
+
+    print("\nTesting invalid plants...")
+    print("Opening watering system")
+    vegetables = ["Tomato", "lettuce", "carrots"]
+    try:
+        for veggi in vegetables:
+            water_plant(veggi)
+    except PlantError as e:
+        print(f"Caught PlantError: {e} '{veggi}'\n"
+              ".. ending tests and returning to main")
+    finally:
+        print("Closing watering system")
     print("\nCleanup always happens, even with errors!")
 
 

@@ -26,7 +26,6 @@ def test_custom_error() -> None:
         raise WaterError()
     except GardenError as e:
         print(f"Caught WaterError: {e}")
-
     print("\nTesting catching all garden errors...")
     errors = [PlantError(), WaterError()]
     for error in errors:
@@ -34,7 +33,6 @@ def test_custom_error() -> None:
             raise error
         except GardenError as e:
             print(f"Caught GardenError: {e}")
-
     print("\nAll custom error types work correctly!")
 
 
