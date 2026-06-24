@@ -1,6 +1,7 @@
+import sys
+
 def ft_inventory_system() -> None:
-    dictionary_list = {{'sword', 1}, {'potion': 5}, {'shield': 2}, 
-                       {'armor': 3}, "'helmet': 1"}
+    inventory = {}
     print()
 
 def main()->None:
