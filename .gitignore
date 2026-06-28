@@ -1,3 +1,4 @@
 main.py
 .mypy_cache
 __pycache__
+.txt

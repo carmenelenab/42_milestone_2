@@ -21,6 +21,7 @@ def main() -> None:
         finally:
             if to_read is not None:
                 to_read.close()
+                print(f"File '{sys.argv[1]}' closed.")
 
 
 if __name__ == "__main__":
