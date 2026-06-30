@@ -1,7 +1,7 @@
 import math
 
 
-def get_player_pos() -> tuple:
+def get_player_pos() -> tuple[float, ...]:
     while True:
         try:
             received = input(
@@ -31,13 +31,16 @@ def main() -> None:
     pos1 = get_player_pos()
     print(f"Got a first tuple: {pos1}")
     print(f"It includes: X={pos1[0]}, Y={pos1[1]}, Z={pos1[2]}")
-    print(
-        f"Distance to center: {math.sqrt(pos1[0]**2 + pos1[1]**2 + pos1[2]**2):.4f}")
+    print("Distance to center: "
+          f"{math.sqrt(pos1[0]**2 + pos1[1]**2 + pos1[2]**2):.4f}")
 
     print("\nGet a second set of coordinates")
     pos2 = get_player_pos()
-    print(
-        f"Distance between the 2 sets of coordinates: {math.sqrt((pos2[0]-pos1[0])**2 + (pos2[1]-pos1[1])**2 + (pos2[2]-pos1[2])**2):.4f}")
+    distance = math.sqrt((pos2[0]-pos1[0])**2
+                         + (pos2[1]-pos1[1])**2
+                         + (pos2[2]-pos1[2])**2
+                         )
+    print(f"Distance between the 2 sets of coordinates: {distance:.4f}")
 
 
 if __name__ == "__main__":

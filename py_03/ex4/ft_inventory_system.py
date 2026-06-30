@@ -17,7 +17,7 @@ def check_max(inventory: dict[str, int]) -> tuple[str, int]:
     item_max = item_names[0]
     max_q = inventory[item_max]
     for item in item_names:
-        if inventory[item] < max_q:
+        if inventory[item] > max_q:
             max_q = inventory[item]
             item_max = item
     return (item_max, max_q)
