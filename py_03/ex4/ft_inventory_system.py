@@ -65,12 +65,14 @@ def ft_inventory_system() -> None:
     print("=== Inventory System Analysis ===")
     if len(sys.argv) < 2:
         print("Missing arguments!")
-        user_input = input("Add your parameters: ")
+        user_input = ""
+        while not user_input:
+            user_input = input("Add your parameters: ")
         inventory = create_inventory(user_input)
     else:
         inventory = create_inventory()
     if not inventory:
-        print("Warning: Empty or invalid inventory state.")
+        print("Warning: Invalid input.")
         return None
     print(f"Got inventory: {inventory}")
     print(f"Item list: {list(inventory.keys())}")
