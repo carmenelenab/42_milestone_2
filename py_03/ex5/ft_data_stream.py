@@ -42,14 +42,12 @@ def gen_event() -> typing.Generator[tuple[str, str], None, None]:
         yield (random.choice(PLAYERS), random.choice(ACTIONS))
 
 
-def consume_event(list_10: list[tuple[str, str]]) -> None:
-    i = len(list_10) - 1
-    while i >= 0:
+def consume_event(list_10: list[tuple[str, str]]
+                  ) -> typing.Generator[tuple[str, str], None, None]:
+    while len(list_10) > 0:
         consume = random.choice(list_10)
-        print(f"Got event from list: {consume}")
         list_10.remove(consume)
-        print(f"Remains in list: {list_10}")
-        i -= 1
+        yield (consume)
 
 
 def main() -> None:
@@ -63,10 +61,12 @@ def main() -> None:
     list_10 = []
     event = gen_event()
     for i in range(10):
-        current_event = next(event)
-        list_10.append(current_event)
+        list_10.append(next(event))
     print(f"\nBuilt list of 10 events: {list_10}")
-    consume_event(list_10)
+
+    for current_event in consume_event(list_10):
+        print(f"Got event from list: {current_event}")
+        print(f"Remains in list: {list_10}")
 
 
 if __name__ == "__main__":

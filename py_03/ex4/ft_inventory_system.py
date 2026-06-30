@@ -1,7 +1,13 @@
 import sys
 
 
+class Raise_Exceptions(Exception):
+    pass
+
+
 def check_min(inventory: dict[str, int]) -> tuple[str, int]:
+    if not inventory:
+        return ("None", 0)
     item_names = list(inventory.keys())
     item_min = item_names[0]
     min_q = inventory[item_min]
@@ -13,6 +19,8 @@ def check_min(inventory: dict[str, int]) -> tuple[str, int]:
 
 
 def check_max(inventory: dict[str, int]) -> tuple[str, int]:
+    if not inventory:
+        return ("None", 0)
     item_names = list(inventory.keys())
     item_max = item_names[0]
     max_q = inventory[item_max]
@@ -23,33 +31,47 @@ def check_max(inventory: dict[str, int]) -> tuple[str, int]:
     return (item_max, max_q)
 
 
-def create_inventory() -> dict[str, int]:
+def create_inventory(user_input: str | None = None) -> dict[str, int]:
     inventory = {}
-    for arg in sys.argv[1:]:
-        if ":" not in arg:
-            continue
-        i = 0
-        while i < len(arg):
-            if arg[i] == ":":
-                break
-            i += 1
-        val = arg[i + 1: len(arg)]
+    arguments: list[str] = []
+    if user_input is None:
+        arguments = sys.argv[1:]
+    else:
+        arguments = list(user_input.split())
+
+    for arg in arguments:
         try:
-            item_name = arg[:i]
+            if ":" not in arg:
+                raise Raise_Exceptions(f"Error - invalid parameter '{arg}'")
+            item_name = arg.split(":")[0]
+            val = arg.split(":")[1]
+            if not item_name:
+                raise Raise_Exceptions(f"Warning: '{val}' has no valid key!")
+            elif item_name in inventory:
+                raise Raise_Exceptions(
+                    f"Redundand item '{item_name}' - discarding")
+            if not int(val):
+                raise Exception()
             quantity = int(val)
-            if item_name in inventory:
-                print(f"Redundand item '{item_name}' - discarding")
-                continue
             inventory.update({item_name: quantity})
+        except Raise_Exceptions as e:
+            print(e)
         except Exception as e:
-            print(f"Error - invalid parameter '{val}'")
             print(f"Quantity error for '{item_name}': {e}")
     return inventory
 
 
 def ft_inventory_system() -> None:
     print("=== Inventory System Analysis ===")
-    inventory = create_inventory()
+    if len(sys.argv) < 2:
+        print("Missing arguments!")
+        user_input = input("Add your parameters: ")
+        inventory = create_inventory(user_input)
+    else:
+        inventory = create_inventory()
+    if not inventory:
+        print("Warning: Empty or invalid inventory state.")
+        return None
     print(f"Got inventory: {inventory}")
     print(f"Item list: {list(inventory.keys())}")
     print(f"Total quantity of the {len(inventory)} items: "
@@ -68,3 +90,11 @@ def ft_inventory_system() -> None:
 
 if __name__ == "__main__":
     ft_inventory_system()
+
+# Interactive methode, trust THE user :D
+# new_item = input("Add a new item. "
+#                  "Parameter must follow this format: "
+#                  "<item_name>:<quantity>: ")
+# new_key = new_item.split(":")[0]
+# new_value = int(new_item.split(":")[1])
+# inventory.update({new_key: new_value})
