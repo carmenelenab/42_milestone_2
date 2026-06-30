@@ -6,8 +6,6 @@ class Raise_Exceptions(Exception):
 
 
 def check_min(inventory: dict[str, int]) -> tuple[str, int]:
-    if not inventory:
-        return ("None", 0)
     item_names = list(inventory.keys())
     item_min = item_names[0]
     min_q = inventory[item_min]
@@ -19,8 +17,6 @@ def check_min(inventory: dict[str, int]) -> tuple[str, int]:
 
 
 def check_max(inventory: dict[str, int]) -> tuple[str, int]:
-    if not inventory:
-        return ("None", 0)
     item_names = list(inventory.keys())
     item_max = item_names[0]
     max_q = inventory[item_max]
