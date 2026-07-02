@@ -2,6 +2,8 @@
 
 import sys
 
+def display_data() -> None:
+    
 
 def main() -> None:
     if len(sys.argv) < 2:
@@ -12,13 +14,13 @@ def main() -> None:
             print("=== Cyber Archives Recovery ===")
             print(f"Accessing file '{sys.argv[1]}'")
             to_read = open(sys.argv[1])
+            to_create = input("Add the name of the new created file: ").write()
             content = to_read.read()
             print("---\n")
             for elem in content:
+                to_create.write(elem)
                 if elem in ("\n", "\0"):
-                    print("#")
-                else:
-                    print(elem, end="")
+                    to_create.write("#")
             print("\n---")
         except Exception as e:
             print(f"Error opening file '{sys.argv[1]}': {e}")
