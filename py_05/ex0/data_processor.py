@@ -1,44 +1,91 @@
 #!/usr/bin/env python3
 
 from abc import ABC, abstractmethod
-import typing
+from typing import Any
+
+class My_exceptions:
+    pass
+
 
 class DataProcessor(ABC):
 
+    def __init__(self):
+        self.my_list = []
+        self.rank = self.my_list[0:]
+        pass
+
+
     @abstractmethod
     def validate(self, data: Any) -> bool:
-        if data is not [int, float, list[int], list[float], list[int, float]]:
-            return False
-        return True
+        pass
 
 
     @abstractmethod
     def ingest(self, data: Any) -> None:
-            pass
+        pass
+
 
     def output(self) -> tuple[int, str]:
         input = None
         try:
-            if validate(input) is False:
-                raise Exception("Sa vedem ce o sa iasa!") 
-            return input
-        except:
+            # if data is not validated , raise exception
+            if validate(input):
+                input = (1, "Sa vedem!")
+            input = (2, "Inca putin")
+        except Exception as e:
+            print(f"Invalid data: {e}")
+        return
 
 
 class NumericProcessor(DataProcessor):
-    pass
+    
+    def validate(self, data):
+        super().validate(data)
+        if isinstance(data, (int, float)):
+            return True
+        if isinstance(data, list) & all(isinstance(item, (int, float)) for item in data):
+            return True
+        return False
+    
+
+    def ingest(self, data):
+        return super().ingest(data)
 
 
 class TextProcessor(DataProcessor):
-    pass
 
+    def validate(self, data):
+        super().validate(data)
+        if isinstance(data, str):
+            return True
+        if isinstance(data, list) & all(isinstance(item, str) for item in data):
+            return True
+        return False
+
+
+    def ingest(self, data):
+        return super().ingest(data)
+    
 
 class LogProcessor(DataProcessor):
-    pass
+
+    def validate(self, data):
+        super().validate(data)
+        return isinstance(data, all(dict, list[dict]))
+
+
+    def ingest(self, data):
+        return super().ingest(data)
 
 
 def main() -> None:
-    input = None
+    print("=== Code Nexus - Data Processor ===\n")
+    print("Testing Numeric Processor...")
+    to_test = [42, "Hello"]
+    for item in to_test:
+        print()
+    if len(sys.argv) < 2:
+        input
     
 
 
