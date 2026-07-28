@@ -1,3 +1,6 @@
 [submodule "py_05"]
 	path = py_05
 	url = https://github.com/carmenelenab/py_05.git
+[submodule "42_milestone_2"]
+	path = 42_milestone_2
+	url = https://github.com/carmenelenab/42_milestone_2.git
