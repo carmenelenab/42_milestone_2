@@ -4,3 +4,15 @@
 [submodule "py_06"]
 	path = py_06
 	url = https://github.com/carmenelenab/py_06.git
+[submodule "py_07"]
+	path = py_07
+	url = https://github.com/carmenelenab/py_07.git
+[submodule "py_08"]
+	path = py_08
+	url = https://github.com/carmenelenab/py_08.git
+[submodule "py_09"]
+	path = py_09
+	url = https://github.com/carmenelenab/py_09.git
+[submodule "py_10"]
+	path = py_10
+	url = https://github.com/carmenelenab/py_10.git
